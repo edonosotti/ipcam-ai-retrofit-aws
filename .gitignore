@@ -1,0 +1,10 @@
+.deploy
+.terraform
+*.tfvars
+*.tfstate
+*.tfstate.*
+config/*.json
+!config/template.*.json
+*.zip
+*.pyc
+__pycache__
