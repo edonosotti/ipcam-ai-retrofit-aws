@@ -17,28 +17,18 @@ variable "email_service" {
   default = 0
 }
 
-variable "ses_domain" {
-  description = "The Internet Domain Name for inbound e-mails managed by SES (if enabled)"
+variable "email_domain" {
+  description = "The Internet Domain Name for inbound e-mails managed by SES or SendGrid"
 }
 
-variable "ses_mail_username" {
-  description = "User name part for the SES inbound e-mail address (username@...)"
+variable "email_username" {
+  description = "User name part for the SES or SendGrid inbound e-mail address (username@...)"
 }
 
 variable "ses_inbound_server" {
   # see: https://docs.aws.amazon.com/ses/latest/DeveloperGuide/regions.html#region-endpoints-receiving
   description = "SES inbound server to add as an MX record value"
   default = "inbound-smtp.__aws_region__.amazonaws.com"
-}
-
-variable "log_retention_days" {
-  description = "Period of retention of the log info"
-  default = 30
-}
-
-variable "lambda_log_level" {
-  description = "Lambda logger level (in Python format, as string: https://docs.python.org/3/library/logging.html#levels)"
-  default = "INFO"
 }
 
 variable "rekognition_objects_enabled" {
@@ -70,4 +60,25 @@ variable "rekognition_objects_triggers" {
 variable "rekognition_objects_min_confidence" {
   description = "The minimum confidence threshold for Rekognition to consider an object as detected"
   default = 55
+}
+
+
+variable "log_retention_days" {
+  description = "Period of retention of the log info"
+  default = 30
+}
+
+variable "lambda_log_level" {
+  description = "Lambda logger level (in Python format, as string: https://docs.python.org/3/library/logging.html#levels)"
+  default = "INFO"
+}
+
+variable "lambda_memory" {
+  description = "Allocated memory for the Lambda function"
+  default = 128
+}
+
+variable "lambda_timeout" {
+  description = "Maximum execution time for the Lambda function"
+  default = 120
 }

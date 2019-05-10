@@ -1,5 +1,7 @@
+# Initialize the provider
 provider "aws" {}
 
+# Get the user account info
 data "aws_caller_identity" "current" {}
 
 # =====================================
