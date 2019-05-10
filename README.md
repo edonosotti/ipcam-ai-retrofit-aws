@@ -12,6 +12,11 @@ ANY "PRODUCTION", "LIVE" or "MISSION-CRITICAL" ENVIRONMENT AND DO NOT EXPECT IT 
 YOUR SAFETY, THE SAFETY OF OTHERS OR THE SAFETY OF YOUR PROPERTIES.
 PLEASE ALSO [READ THE LICENSE](LICENSE) CAREFULLY BEFORE INSTALLING AND RUNNING THE CODE.
 
+## Code branches
+
+ * `dev` - development branch, latest and greatest version of the code that shoud *not* be expected to work
+ * `master` - distribution branch, this code is expected to work (NO WARRANTIES GIVEN, PLEASE READ THE DISCLAMER PARAGRAPH!)
+
 ## Prerequisites
 
  * 1+ IP cameras able to send e-mails with attached pictures (triggered by any event of your choice)
@@ -89,6 +94,15 @@ mails, recipients *MUST* be verified from the `SES` console first
 (after the `SES` domain has been provisioned).
 
 See: https://docs.aws.amazon.com/ses/latest/DeveloperGuide/request-production-access.html
+
+#### Rate limiting
+
+In order to prevent abuse and unwanted charges, this application
+enforces rate limiting on the `API Gateway` (used for `SendGrid`).
+Check the [`terraform/api_gateway.tf`](terraform/api_gateway.tf)
+file for details. Also, do not forget to set an
+[`AWS Budget`](https://www.terraform.io/docs/providers/aws/r/api_gateway_account.html)
+on your account to automatically monitor the costs.
 
 ## Technical notes
 
